@@ -1,6 +1,7 @@
 namespace Football.Data
 
 open System
+open Newtonsoft.Json
 
 type ApiToken = ApiToken of string
 
@@ -10,74 +11,112 @@ type FootballLeague =
 
 type SeasonDto =
     {
-        id : int
-        startDate : DateTime
-        endDate : DateTime
-        currentMatchday : int
+        [<JsonProperty("id")>]
+        Id : int
+        [<JsonProperty("startDate")>]
+        StartDate : DateTime
+        [<JsonProperty("endDate")>]
+        EndDate : DateTime
+        [<JsonProperty("currentMatchday")>]
+        CurrentMatchday : int
     }
 
 type ScorePairDto =
     {
-        homeTeam : Nullable<int>
-        awayTeam : Nullable<int>
+        [<JsonProperty("homeTeam")>]
+        HomeTeam : Nullable<int>
+        [<JsonProperty("awayTeam")>]
+        AwayTeam : Nullable<int>
     }
 
 type ScoreDto =
     {
-        winner : string
-        duration : string
-        fullTime : ScorePairDto
-        halfTime : ScorePairDto
-        extraTime : ScorePairDto
-        penalties : ScorePairDto
+        [<JsonProperty("winner")>]
+        Winner : string
+        [<JsonProperty("duration")>]
+        Duration : string
+        [<JsonProperty("fullTime")>]
+        FullTime : ScorePairDto
+        [<JsonProperty("halfTime")>]
+        HalfTime : ScorePairDto
+        [<JsonProperty("extraTime")>]
+        ExtraTime : ScorePairDto
+        [<JsonProperty("penalties")>]
+        Penalties : ScorePairDto
     }
 
 type TeamDto =
     {
-        id : int
-        name : string
+        [<JsonProperty("id")>]
+        Id : int
+        [<JsonProperty("name")>]
+        Name : string
     }
 
 type RefereeDto =
     {
-        id : int
-        name : string
+        [<JsonProperty("id")>]
+        Id : int
+        [<JsonProperty("name")>]
+        Name : string
     }
 
 type MatchDto =
     {
-        id : int
-        season : SeasonDto
-        utcDate : DateTime
-        matchday : Nullable<int>
-        stage : string
-        group : string
-        lastUpdated : DateTime
-        score : ScoreDto
-        homeTeam : TeamDto
-        awayTeam : TeamDto
-        referees : RefereeDto array
+        [<JsonProperty("id")>]
+        Id : int
+        [<JsonProperty("season")>]
+        Season : SeasonDto
+        [<JsonProperty("utcDate")>]
+        UtcDate : DateTime
+        [<JsonProperty("matchday")>]
+        Matchday : Nullable<int>
+        [<JsonProperty("stage")>]
+        Stage : string
+        [<JsonProperty("group")>]
+        Group : string
+        [<JsonProperty("lastUpdated")>]
+        LastUpdated : DateTime
+        [<JsonProperty("score")>]
+        Score : ScoreDto
+        [<JsonProperty("homeTeam")>]
+        HomeTeam : TeamDto
+        [<JsonProperty("awayTeam")>]
+        AwayTeam : TeamDto
+        [<JsonProperty("referees")>]
+        Referees : RefereeDto array
     }
 
 type AreaDto =
     {
-        id : int
-        name : string
+        [<JsonProperty("id")>]
+        Id : int
+        [<JsonProperty("name")>]
+        Name : string
     }
 
 type CompetitionDto =
     {
-        id : int
-        area : AreaDto
-        name : string
-        code : string
-        plan : string
-        lastUpdated : DateTime
+        [<JsonProperty("id")>]
+        Id : int
+        [<JsonProperty("area")>]
+        Area : AreaDto
+        [<JsonProperty("name")>]
+        Name : string
+        [<JsonProperty("code")>]
+        Code : string
+        [<JsonProperty("plan")>]
+        Plan : string
+        [<JsonProperty("lastUpdated")>]
+        LastUpdated : DateTime
     }
 
 type LeagueDto =
     {
-        count : int
-        comptetion : CompetitionDto
-        matches : MatchDto array
+        [<JsonProperty("count")>]
+        Count : int
+        [<JsonProperty("competition")>]
+        Comptetion : CompetitionDto
+        [<JsonProperty("matches")>]
+        Matches : MatchDto array
     }
