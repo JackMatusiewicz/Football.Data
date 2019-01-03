@@ -30,8 +30,9 @@ module League =
             let! resp =
                 Http.AsyncRequest (url, ["season", sprintf "%d" season], ["X-Auth-Token", token])
 
-            match resp.StatusCode with
-            | SuccessCode ->
-                return convertJsonBody<LeagueDto> resp.Body
-            | _ -> return None
+            return
+                match resp.StatusCode with
+                | SuccessCode ->
+                    convertJsonBody<LeagueDto> resp.Body
+                | _ -> None
         }
