@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FootballLeague.Data", "FootballLeague.Data\FootballLeague.Data.fsproj", "{D84CB8F4-53AC-4C9A-BAC4-C85B30309FAC}"
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Football.Data", "Football.Data\Football.Data.fsproj", "{D84CB8F4-53AC-4C9A-BAC4-C85B30309FAC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
