@@ -21,7 +21,7 @@ module FootballLeague =
             JsonConvert.DeserializeObject<'a> json |> Some
         | _ -> None
 
-    let get (Token token) (season : int) (league : League) : LeagueDto option Async =
+    let get (ApiToken token) (season : int) (league : League) : LeagueDto option Async =
         let leagueCode = leagueToCode league
         let url =
             sprintf "http://api.football-data.org/v2/competitions/%s/matches"
