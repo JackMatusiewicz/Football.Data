@@ -1,10 +1,10 @@
-namespace FootballLeague.Data
+namespace Football.Data
 
 open System
 
 type ApiToken = ApiToken of string
 
-type League =
+type FootballLeague =
     | PremierLeague
     | Championship
 
