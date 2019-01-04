@@ -15,13 +15,17 @@ module League =
         | PremierLeague -> "PL"
         | Championship -> "ELC"
 
-    let private convertJsonBody<'a> (resp : HttpResponseBody) : 'a option =
+    let private deserialise<'a> (resp : HttpResponseBody) : Result<'a, ApiError> =
         match resp with
         | Text json ->
-            JsonConvert.DeserializeObject<'a> json |> Some
-        | _ -> None
+            JsonConvert.DeserializeObject<'a> json |> Ok
+        | _ ->
+            {
+                ErrorCode = 400
+                Message = "Unable to deserialise the response json"
+            } |> Error
 
-    let get (ApiToken token) (season : int) (league : FootballLeague) : LeagueDto option Async =
+    let get (ApiToken token) (season : int) (league : FootballLeague) : Result<LeagueDto, ApiError> Async =
         let leagueCode = leagueToCode league
         let url =
             sprintf "http://api.football-data.org/v2/competitions/%s/matches" leagueCode
@@ -33,6 +37,8 @@ module League =
             return
                 match resp.StatusCode with
                 | SuccessCode ->
-                    convertJsonBody<LeagueDto> resp.Body
-                | _ -> None
+                    deserialise<LeagueDto> resp.Body
+                | _ ->
+                    deserialise<ApiError> resp.Body
+                    |> Result.bind Error
         }

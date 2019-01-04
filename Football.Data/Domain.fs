@@ -9,6 +9,14 @@ type FootballLeague =
     | PremierLeague
     | Championship
 
+type ApiError =
+    {
+        [<JsonProperty("errorCode")>]
+        ErrorCode : int
+        [<JsonProperty("message")>]
+        Message : string
+    }
+
 type SeasonDto =
     {
         [<JsonProperty("id")>]
